@@ -51,68 +51,6 @@ class Property():
         print(Arc_sum)
 
         PERMISSION = [
-                # [0],
-                # [2],
-                # [5],
-                # [7],
-                # [10]
-                # [Arc_sum-int(Arc[4])-int(Arc[3])-int(Arc[2])-int(Arc[1])-int(Arc[0])],
-                # [Arc_sum-int(Arc[4])-int(Arc[3])-int(Arc[2])-int(Arc[1])],
-                # [Arc_sum-int(Arc[4])-int(Arc[3])-int(Arc[2])],
-                # [Arc_sum-int(Arc[4])-int(Arc[3])],
-                # [Arc_sum-int(Arc[4])],
-                # [Arc_sum]
-                # [Arc_sum-float(Arc[4])-float(Arc[3])-float(Arc[2])-float(Arc[1])-float(Arc[0])],
-                # [Arc_sum-float(Arc[4])-float(Arc[3])-float(Arc[2])-float(Arc[1])],
-                # [Arc_sum-float(Arc[4])-float(Arc[3])-float(Arc[2])],
-                # [Arc_sum-float(Arc[4])-float(Arc[3])],
-                # [Arc_sum-float(Arc[4])],
-                # [Arc_sum]
-
-                # [0],
-                # [5],
-                # [5],
-                # [5],
-                # [5],
-                # [8]
-
-
-                # [0],
-                # [10],
-                # [10],
-                # [12],
-                # [20],
-                # [30]
-                # [Arc_sum-float(Arc[5])-float(Arc[4])-float(Arc[3])-float(Arc[2])-float(Arc[1])-float(Arc[0])],
-                # [Arc_sum-float(Arc[5])-float(Arc[4])-float(Arc[3])-float(Arc[2])-float(Arc[1])],
-                # [Arc_sum-float(Arc[5])-float(Arc[4])-float(Arc[3])-float(Arc[2])],
-                # [Arc_sum-float(Arc[5])-float(Arc[4])-float(Arc[3])],
-                # [Arc_sum-float(Arc[5])-float(Arc[4])],
-                # [Arc_sum-float(Arc[5])],
-                # [Arc_sum]
-
-                # [0],
-                # [7],
-                # [8],
-                # [11],
-                # [4]
-
-                # [0],
-                # [5],
-                # [8],
-                # [10],
-                # [4]
-
-                # Add 1027
-                # [0],
-                # [3],
-                # [8],
-                # [12],
-                # [19],
-                # [21],
-                # [26],
-                # [29],
-                # [33]
                 [0],
                 [5],
                 [8],

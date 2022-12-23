@@ -1,3 +1,4 @@
 # これはgitignoreです.
 
 /Rebuild/__pycache__
+/Visualization/__pycache__

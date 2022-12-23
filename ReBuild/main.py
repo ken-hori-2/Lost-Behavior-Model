@@ -12,6 +12,7 @@ from setting_large_grid_Robosin import Setting
 import pprint
 from advance_Robosin import Algorithm_advance
 from reference_match_rate_Robosin import Property
+import pandas as pd
 
 
 
@@ -29,50 +30,41 @@ def main():
 
         set = Setting()
 
-        NODELIST, ARCLIST, Observation, map, grid = set.Infomation()
-        # refer = Property()
-        # reference = refer.reference
-        GOAL_STATE = [0, 2]
-        test = [grid, map, NODELIST] # , GOAL_STATE]
+        NODELIST, ARCLIST, Observation, map, grid, n_m = set.Infomation()
+        test = [grid, map, NODELIST]
         marking_param = 1
-        # env = Environment(grid, NODELIST, map)
         env = Environment(*test)
-        # agent = Agent(env, GOAL_STATE, NODELIST, map, grid)
         agent = Agent(env, marking_param, *test)
         STATE_HISTORY = []
         CrossRoad = []
-
         TOTAL_STRESS_LIST = []
         move_cost_result = []
+        standard_list = []
+        rate_list = []
         import numpy as np
-        # test_bp_st = [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan]
         test_bp_st = [np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan, np.nan]
         
-        for x in range(1): # 3): # 1): # 5):
+        for x in range(1):
             print("=================== {} Steps\n===================".format(x))
             
             # Initialize position of agent.
             state = env.reset()
-
-            demo = [state, env, agent, NODELIST, Observation] # , reference]
-
+            demo = [state, env, agent, NODELIST, Observation, n_m] # , reference]
             Advance_action = Algorithm_advance(*demo)
-
             back_position = Algorithm_bp(*demo)
-
             explore_action = Algorithm_exp(*demo)
-            
             TRIGAR = False
             OBS = []
             total_stress = 0
-
             move_step = 0
             old_to_adavance = "s"
+            Backed_just_before = False
+            phi = [1, 1] # n, m
+            test_s = 0
             
             for i in range(20): # 4 戻るノードの個数以上は回す
-                print("===================\n🐬🍏🍋test 0921 : {}\n===================".format(i))
 
-                total_stress, STATE_HISTORY, state, TRIGAR, OBS, BPLIST, action, Add_Advance, GOAL, SAVE_ARC, CrossRoad, Storage, Storage_Stress, TOTAL_STRESS_LIST, move_cost_result, test_bp_st, move_cost_result_X = Advance_action.Advance(STATE_HISTORY, state, TRIGAR, OBS, total_stress, grid, CrossRoad, x, TOTAL_STRESS_LIST, move_step, old_to_adavance, move_cost_result, test_bp_st)
+                total_stress, STATE_HISTORY, state, TRIGAR, OBS, BPLIST, action, Add_Advance, GOAL, SAVE_ARC, CrossRoad, Storage, Storage_Stress, TOTAL_STRESS_LIST, move_cost_result, test_bp_st, move_cost_result_X, standard_list, rate_list = Advance_action.Advance(STATE_HISTORY, state, TRIGAR, OBS, total_stress, grid, CrossRoad, x, TOTAL_STRESS_LIST, move_step, old_to_adavance, move_cost_result, test_bp_st, Backed_just_before, phi, standard_list, rate_list, test_s)
                 if GOAL:
                     print("探索済みのノード Storage : {}".format(Storage))
                     print("未探索のノード CrossRoad : {}".format(CrossRoad))
@@ -81,13 +73,13 @@ def main():
 
                 print("\n============================\n🤖 🔛　アルゴリズム切り替え -> agent Back position\n============================")
 
-                total_stress, STATE_HISTORY, state, OBS, BackPosition_finish, TOTAL_STRESS_LIST, move_cost_result, test_bp_st = back_position.BP(STATE_HISTORY, state, TRIGAR, OBS, BPLIST, action, Add_Advance, total_stress, SAVE_ARC, TOTAL_STRESS_LIST, move_cost_result, test_bp_st, move_cost_result_X)
+                total_stress, STATE_HISTORY, state, OBS, BackPosition_finish, TOTAL_STRESS_LIST, move_cost_result, test_bp_st, Backed_just_before, standard_list, rate_list = back_position.BP(STATE_HISTORY, state, TRIGAR, OBS, BPLIST, action, Add_Advance, total_stress, SAVE_ARC, TOTAL_STRESS_LIST, move_cost_result, test_bp_st, move_cost_result_X, standard_list, rate_list)
 
                 if BackPosition_finish:
                     BackPosition_finish = False
                     print(" = 戻り切った状態 🤖🔚 {}回目".format(x+1))
-                    # map, bplist reset
                     
+                    "== map, bplist reset =="
                     "== Storageを空にするバージョン =="
                     set = Setting()
                     map = set.reset()
@@ -99,56 +91,9 @@ def main():
                     break
                     "== Storageを空にするバージョン =="
 
-                    # # demo = [state, env, agent, NODELIST, Observation]
-
-                    # marking_param += 1
-                    # agent = Agent(env, marking_param, *test)
-
-                    # # env = Environment(*test)
-                    # demo = [state, env, agent, NODELIST, Observation]
-
-                    # back_position_re = Algorithm_bp_re(*demo)
-                    # explore_action_re = Algorithm_exp_re(*demo)
-                    # Advance_action_re = Algorithm_advance_re(*demo)
-
-                    # pprint.pprint(map)
-                    # print("探索済みのノード Storage : {}".format(Storage))
-                    # print("未探索のノード CrossRoad : {}".format(CrossRoad))
-
-
-
-                    # print("戻れる場所に戻って再度探索\n\n\n\n\n\n\n\n\n\n")
-                    # # Add_Advance = False
-                    # Storage.append(state)
-                    # # Re_first = True
-                    # for re in range(5):
-                    #     Re_first = True
-                    #     total_stress, STATE_HISTORY, state, Storage_Stress, BackPosition_finish = back_position_re.BP_re(STATE_HISTORY, state, TRIGAR, Storage_Stress, Storage, action, Add_Advance, total_stress, SAVE_ARC, Storage, CrossRoad, Storage_Stress, Re_first)
-                    #     total_stress, STATE_HISTORY, state, TRIGAR, CrossRoad, GOAL = explore_action_re.Explore_re(STATE_HISTORY, state, TRIGAR, total_stress, grid, Storage, CrossRoad, x=re)
-                    #     if GOAL:
-                    #         print("探索済みのノード Storage : {}".format(Storage))
-                    #         print("未探索のノード CrossRoad : {}".format(CrossRoad))
-                    #         print("探索終了")
-                    #         break
-                        
-                    #     total_stress, STATE_HISTORY, state, TRIGAR, Storage_Stress, Storage, action, Add_Advance, GOAL, SAVE_ARC, CrossRoad, Storage, Storage_Stress = Advance_action_re.Advance_re(STATE_HISTORY, state, TRIGAR, Storage, Storage_Stress, total_stress, grid, CrossRoad, x=re)
-                    #     print("戻れる場所に戻って再度探索終了\n\n\n\n\n\n\n\n\n\n")
-
-                    #     if GOAL:
-                    #         print("探索済みのノード Storage : {}".format(Storage))
-                    #         print("未探索のノード CrossRoad : {}".format(CrossRoad))
-                    #         print("探索終了")
-                    #         break
-
-                    #     if BackPosition_finish:
-                    #         BackPosition_finish = False
-                    #         break
-                    # break
-                
-                print("============\n=🤖　🌟　⚠️ =\n============")
                 print("\n============================\n🤖 🔛　アルゴリズム切り替え -> agent Explore\n============================")
 
-                total_stress, STATE_HISTORY, state, TRIGAR, CrossRoad, GOAL, TOTAL_STRESS_LIST, move_step, old_to_adavance = explore_action.Explore(STATE_HISTORY, state, TRIGAR, total_stress, grid, CrossRoad, x, TOTAL_STRESS_LIST)
+                total_stress, STATE_HISTORY, state, TRIGAR, CrossRoad, GOAL, TOTAL_STRESS_LIST, move_step, old_to_adavance, phi, standard_list, rate_list, test_s = explore_action.Explore(STATE_HISTORY, state, TRIGAR, total_stress, grid, CrossRoad, x, TOTAL_STRESS_LIST, Backed_just_before, standard_list, rate_list)
 
                 if GOAL:
                     print("探索済みのノード Storage : {}".format(Storage))
@@ -160,7 +105,9 @@ def main():
 
             print("Episode {}: Agent gets {} stress.".format(i, total_stress))
             print("STATE_HISTORY = {}".format(STATE_HISTORY))
-            print("self.stress = {}".format(TOTAL_STRESS_LIST))
+            print("stress = {}".format(TOTAL_STRESS_LIST))
+            print("standard_list = ", standard_list)
+            print("rate_list = ", rate_list)
             print(len(TOTAL_STRESS_LIST))
 
             if GOAL:
@@ -169,13 +116,7 @@ def main():
                 goal_count += 1
                 break
 
-            # total_stress, STATE_HISTORY = explore_action.Explore()
-
-        
         "======== データの出力 ========"
-        import pandas as pd
-        import numpy as np
-
         df = pd.Series(data=STATE_HISTORY)
         df = df[df != df.shift(1)]
         print('-----削除後データ----')
@@ -198,6 +139,9 @@ def main():
     Length_history = len(STATE_HISTORY)
     print("length State history: {}".format(Length_history))
     print("length Storage Stress : {}".format(len(TOTAL_STRESS_LIST)))
+
+    # print("standard_list = ", standard_list)
+    # print("rate_list = ", rate_list)
 
 
 if __name__ == "__main__":
