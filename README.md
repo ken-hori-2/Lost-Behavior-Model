@@ -1,8 +1,12 @@
 # Lost-Behavior-Model
 
 This is code for "Lost Behavior Model".
+
 It is written in python.
-This repository is an algorithm. The code for visualization is in other repositories.
+
+This repository is an algorithm. 
+
+The code for visualization is in other repositories.
 
 # ReBuild
 
