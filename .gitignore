@@ -1,5 +1,4 @@
 # これはgitignoreです.
 
-.DS_Store
 /Rebuild/__pycache__
 /Visualization/__pycache__
