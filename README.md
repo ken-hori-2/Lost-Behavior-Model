@@ -1,8 +1,8 @@
 # Lost-Behavior-Model
 
-分かりやすくてカッコイイ名前をつける（今回は"hoge"という名前をつける）
-
-"hoge"が何かを簡潔に紹介する
+This is code for "Lost Behavior Model".
+It is written in python.
+This repository is an algorithm. The code for visualization is in other repositories.
 
 # ReBuild
 
@@ -32,7 +32,7 @@ pip install huga_package
 DEMOの実行方法など、"hoge"の基本的な使い方を説明する
 
 ```bash
-git clone https://github.com/Lost-Behavior-Model/~
+git clone https://github.com/ken-hori-2/Lost-Behavior-Model.git
 cd ReBuild
 python main.py
 ```
