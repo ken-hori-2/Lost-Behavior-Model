@@ -1,10 +1,9 @@
 # Lost-Behavior-Model
 
 This is code for "Lost Behavior Model".
+"Lost-Behavior-Model" is an algorithm of lost behavior simulations with Python.
 
-It is written in python.
-
-This repository is an algorithm. 
+This repository is an algorithm ver. 
 
 The code for visualization is in other repositories.
 
@@ -18,23 +17,21 @@ The code for visualization is in other repositories.
 
 # Requirement
 
-"hoge"を動かすのに必要なライブラリなどを列挙する
-
-* huga 3.5.2
-* hogehuga 1.0.2
+* Python 3.8.8
 
 # Installation
 
 Requirementで列挙したライブラリなどのインストール方法を説明する
 
 ```bash
-pip install huga_package
+pip install python3
 ```
 
 # Usage
 
 DEMOの実行方法など、"hoge"の基本的な使い方を説明する
 
+Please execution python code named "main.py".
 ```bash
 git clone https://github.com/ken-hori-2/Lost-Behavior-Model.git
 cd ReBuild
@@ -43,12 +40,24 @@ python main.py
 
 # Note
 
-注意点などがあれば書く
+I don't test environments under Linux and Windows.
 
 # Author
 
 作成情報を列挙する
 
-* 作成者
-* 所属
+* Horiuchi
+* klab
 * E-mail
+
+
+
+
+# DEMO
+
+You can learn how to making cute physics simulations (looks retro game).
+
+![](https://cpp-learning.com/wp-content/uploads/2019/05/pyxel-190505-161951.gif)
+
+This animation is a "Cat playing on trampoline"!
+You can get basic skills for making physics simulations.
