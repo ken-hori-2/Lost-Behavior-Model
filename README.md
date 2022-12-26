@@ -2,7 +2,7 @@
 
 "Lost-Behavior-Model" is an algorithm of lost behavior simulations with Python.
 
-This repository is an algorithm ver. 
+This repository is an algorithm version. 
 
 The code for visualization is in other repositories.
 
