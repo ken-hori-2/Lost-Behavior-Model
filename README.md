@@ -1,6 +1,5 @@
 # Lost-Behavior-Model
 
-This is code for "Lost Behavior Model".
 "Lost-Behavior-Model" is an algorithm of lost behavior simulations with Python.
 
 This repository is an algorithm ver. 
