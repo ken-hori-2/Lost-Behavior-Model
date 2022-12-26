@@ -8,7 +8,7 @@ The code for visualization is in other repositories.
 
 # ReBuild
 
-"hoge"の魅力が直感的に伝えわるデモ動画や図解を載せる
+<img width="637" alt="スクリーンショット 2022-12-27 0 01 00" src="https://user-images.githubusercontent.com/73274492/209563208-3c01553a-178c-4e03-8c0e-cb8e9e98686b.png">
 
 # Features
 
