@@ -13,3 +13,6 @@ This code is the main
 k回未満は再探索
 k回以上は諦める
 そのために戻った時点での蓄積量と割合の記憶
+
+
+/Users/ken/Desktop/Code/edit/Lost-Behavior-Model/ReBuild/advance_Robosin.py
